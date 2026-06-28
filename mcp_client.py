@@ -43,11 +43,11 @@ class MCPClient:
     def session(self) -> ClientSession:
         if self._session is None:
             raise ConnectionError(
-                "Client session not initialized. Call connect() first."
+                "Client session not initialized or cache not populated. Call connect() first."
             )
 
         return self._session
-
+ 
     async def cleanup(self):
         await self._exit_stack.aclose()
         self._session = None
